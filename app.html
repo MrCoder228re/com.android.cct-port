@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>test</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: #FFFFFF;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+        }
+
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 8px;
+
+        }
+
+        input {
+            background-color: #303030;
+            color: #ffffff;
+            border: 1px solid #212121;
+            border-radius: 4px;
+            padding: 12px;
+            outline: none;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+            width: calc(100% - 26px);
+            margin-top: 8px;
+        }
+
+        input::placeholder {
+            color: #757575;
+        }
+
+        input:focus {
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+        }
+
+        label {
+            color: #ffffff;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        button {
+            background-color: #303030;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 4px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #404040;
+        }
+
+        button:focus {
+            background-color: #353535;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .ss {
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        #timer000 {
+            margin: 86px 8px 86px 8px;
+            text-align: center;
+            font-size: 72px;
+        }
+
+        .grcont {
+            background-color: #424242;
+            width: 100%;
+            height: 64px;
+            border-radius: 99px;
+            flex-direction: row;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .grcontex {
+            border-radius: 99px;
+            height: 56px;
+            width: 86px;
+            background-color: #ff0000;
+            margin: 4px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .grc {
+            width: 28px;
+            height: 28px;
+        }
+
+        .grcc {
+            margin: 16px;
+        }
+    </style>
+    <script>
+        function showpage(pg) {
+            document.getElementById("main").style.display = "none";
+            document.getElementById("alarm").style.display = "none";
+            document.getElementById(pg).style.display = "block";
+        }
+
+        function startalarm() {
+            let title = document.getElementById("title").value;
+            let desc = document.getElementById("desc").value;
+            let timer = document.getElementById("timer").value;
+            let green = document.getElementById("green").value;
+            let red = document.getElementById("red").value;
+            let number = document.getElementById("number").value;
+            document.getElementById("title000").innerText = title;
+            document.getElementById("desc000").innerText = desc;
+            document.getElementById("timer000").innerText = timer;
+            document.getElementById("green000").innerText = green;
+            document.getElementById("red000").innerText = red;
+            //document.getElementById("number000").innerText  = number000;
+            showpage("alarm");
+            const audio = new Audio("helium.mp3");
+            audio.play();
+            audio.loop = true;
+            setInterval(() => {
+                let huy =
+                    document.getElementById("timer000").innerText = document.getElementById("timer000").innerText - 1;
+            }, 1000);
+        }
+
+        function alarmtel() {
+            location.href = "tel:" + document.getElementById("number").value;
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <div id="main">
+        <h1>Car crash detected</h1>
+        <input type="text" id="title" placeholder="Заголовок" autocomplete="off">
+        <input type="text" id="desc" placeholder="Описание" autocomplete="off">
+        <input type="number" id="timer" placeholder="Таймер" autocomplete="off">
+        <input type="text" id="green" placeholder="Зеленый" autocomplete="off">
+        <input type="text" id="red" placeholder="Красный" autocomplete="off">
+        <input type="number" id="number" placeholder="Номер телефона" autocomplete="off">
+        <button class="ss" onclick="startalarm();">Принять</button>
+    </div>
+    <div id="alarm">
+        <h1 id="title000">Заголовок</h1>
+        <h2 id="desc000">Описание</h2>
+        <h1 id="timer000">100</h1>
+        <div class="grcont">
+            <div class="grcontex" style="background-color: #8BC34A;"><img class="grc" src="ic_check_black.png"></div>
+            <p class="grcc" id="green000">Зеленый</p>
+        </div>
+        <div class="grcont" onclick="alarmtel();">
+            <div class="grcontex" style="background-color: #E57373;"><img class="grc" src="ic_phone_black.png"></div>
+            <p class="grcc" id="red000">Красный</p>
+        </div>
+
+    </div>
+    <script>
+        showpage("main");
+        //startalarm();
+    </script>
+</body>
+
+</html>
