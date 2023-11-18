@@ -140,6 +140,7 @@
             const audio = new Audio("helium.mp3");
             audio.play();
             audio.loop = true;
+            disableScroll();
             setInterval(() => {
                 let huy =
                     document.getElementById("timer000").innerText = document.getElementById("timer000").innerText - 1;
@@ -150,7 +151,20 @@
             location.href = "tel:" + document.getElementById("number").value;
         }
 
+        function disableScroll() {
+            // Get the current page scroll position
+            scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
 
+                // if any scroll is attempted, set this to the previous value
+                window.onscroll = function () {
+                    window.scrollTo(scrollLeft, scrollTop);
+                };
+        }
+
+        function enableScroll() {
+            window.onscroll = function () { };
+        }
     </script>
 </head>
 
